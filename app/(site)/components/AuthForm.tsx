@@ -52,6 +52,7 @@ const AuthForm: React.FC = () => {
               type="text"
               register={register}
               errors={errors}
+              disabled={isLoading}
             />
           )}
           <Input
@@ -60,6 +61,7 @@ const AuthForm: React.FC = () => {
             type="email"
             register={register}
             errors={errors}
+            disabled={isLoading}
           />
           <Input
             id="password"
@@ -67,6 +69,7 @@ const AuthForm: React.FC = () => {
             type="password"
             register={register}
             errors={errors}
+            disabled={isLoading}
           />
           <div>
             <Button disabled={isLoading} fullWidth type="submit">
