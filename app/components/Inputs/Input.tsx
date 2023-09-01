@@ -1,13 +1,13 @@
 'use client';
 
 import clsx from 'clsx';
-import React from 'react';
+import React, { HTMLInputTypeAttribute } from 'react';
 import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
 
 interface InputProps {
   label: string;
   id: string;
-  type?: string;
+  type?: HTMLInputTypeAttribute;
   required?: boolean;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
