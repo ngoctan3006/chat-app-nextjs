@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
+import { AuthForm } from './components';
 
 const Home: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const Home: React.FC = () => {
           Sign in to your account
         </h2>
       </div>
+      <AuthForm />
     </div>
   );
 };
