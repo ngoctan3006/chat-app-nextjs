@@ -1,8 +1,10 @@
 'use client';
 
 import { Button, Input } from '@/app/components';
+import axios from 'axios';
 import React, { useCallback, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 import { BsGithub, BsGoogle } from 'react-icons/bs';
 import { AuthSocialButton } from './';
 
@@ -34,6 +36,10 @@ const AuthForm: React.FC = () => {
     }
 
     if (variant === 'REGISTER') {
+      axios
+        .post('/api/register', data)
+        .catch(() => toast.error('Something went wrong!'))
+        .finally(() => setIsLoading(false));
     }
   };
 
