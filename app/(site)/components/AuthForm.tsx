@@ -62,7 +62,6 @@ const AuthForm: React.FC = () => {
 
     signIn(action, { redirect: false })
       .then((callback) => {
-        console.log(callback);
         if (callback?.error) {
           toast.error('Invalid Credentials');
         }
