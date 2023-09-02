@@ -40,7 +40,7 @@ const AuthForm: React.FC = () => {
       })
         .then((callback) => {
           if (callback?.error) {
-            toast.error('Invalid credentials');
+            toast.error('Invalid Credentials');
           }
           if (callback?.ok && !callback?.error) {
             toast.success('Logged in!');
@@ -59,6 +59,18 @@ const AuthForm: React.FC = () => {
 
   const socialAction = (action: string) => {
     setIsLoading(true);
+
+    signIn(action, { redirect: false })
+      .then((callback) => {
+        console.log(callback);
+        if (callback?.error) {
+          toast.error('Invalid Credentials');
+        }
+        if (callback?.ok && !callback?.error) {
+          toast.success('Logged in!');
+        }
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
