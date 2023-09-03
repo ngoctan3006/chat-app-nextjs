@@ -2,8 +2,9 @@
 
 import { Button, Input } from '@/app/components';
 import axios from 'axios';
-import { signIn } from 'next-auth/react';
-import React, { useCallback, useState } from 'react';
+import { signIn, useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { BsGithub, BsGoogle } from 'react-icons/bs';
@@ -12,6 +13,8 @@ import { AuthSocialButton } from './';
 type Variant = 'LOGIN' | 'REGISTER';
 
 const AuthForm: React.FC = () => {
+  const session = useSession();
+  const router = useRouter();
   const [variant, setVariant] = useState<Variant>('LOGIN');
   const [isLoading, setIsLoading] = useState(false);
   const {
@@ -25,6 +28,12 @@ const AuthForm: React.FC = () => {
       password: '',
     },
   });
+
+  useEffect(() => {
+    if (session?.status === 'authenticated') {
+      router.push('/users');
+    }
+  }, [session?.status, router]);
 
   const toggleVariant = useCallback(() => {
     setVariant((prev) => (prev === 'LOGIN' ? 'REGISTER' : 'LOGIN'));
