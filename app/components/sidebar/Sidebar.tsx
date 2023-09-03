@@ -1,11 +1,17 @@
 import React from 'react';
+import { DesktopSidebar } from './';
 
 interface SidebarProps {
   children: React.ReactNode;
 }
 
 const Sidebar = async ({ children }: SidebarProps) => {
-  return <main className="lg:pl-20 h-full">{children}</main>;
+  return (
+    <div className="h-full">
+      <DesktopSidebar />
+      <main className="lg:pl-20 h-full">{children}</main>
+    </div>
+  );
 };
 
 export default Sidebar;
