@@ -53,6 +53,7 @@ const AuthForm: React.FC = () => {
           }
           if (callback?.ok && !callback?.error) {
             toast.success('Logged in!');
+            router.push('users');
           }
         })
         .finally(() => setIsLoading(false));
@@ -61,6 +62,7 @@ const AuthForm: React.FC = () => {
     if (variant === 'REGISTER') {
       axios
         .post('/api/register', data)
+        .then(() => signIn('credentials', data))
         .catch(() => toast.error('Something went wrong!'))
         .finally(() => setIsLoading(false));
     }
